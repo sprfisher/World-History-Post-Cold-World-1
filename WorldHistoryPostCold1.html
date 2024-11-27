@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World History Quiz: World History</title>
+    <style>
+        /* Styling for the quiz */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+
+        #quiz-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #question-container {
+            margin-top: 20px;
+        }
+
+        .choice-button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .choice-button:hover {
+            background: #0056b3;
+        }
+
+        #feedback {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 5px solid #ccc;
+        }
+
+        #next-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+        }
+
+        #next-button:disabled {
+            background: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div id="quiz-container">
+        <h1>World History Quiz: Post Cold World</h1>
+        <div id="question-container"></div>
+        <button id="next-button">Next Question</button>
+        <div id="feedback"></div>
+    </div>
+    <script>
+        // JavaScript for quiz functionality
+        const questions = [
+{
+    question: "What event marked the official end of the Cold War?",
+    choices: [
+        "The fall of the Berlin Wall",
+        "The reunification of Germany",
+        "The dissolution of the Soviet Union",
+        "The signing of the Treaty of Versailles"
+    ],
+    correctAnswer: 2,
+    explanation: "The dissolution of the Soviet Union in 1991 marked the end of the Cold War, leading to the collapse of communist regimes in Eastern Europe."
+},
+{
+    question: "What is the primary purpose of the World Trade Organization (WTO)?",
+    choices: [
+        "To regulate international trade",
+        "To enforce human rights globally",
+        "To promote military alliances",
+        "To coordinate environmental policies"
+    ],
+    correctAnswer: 0,
+    explanation: "The WTO facilitates international trade, resolves trade disputes, and sets global trade standards to promote economic cooperation."
+},
+{
+    question: "Which region experienced ethnic cleansing during the 1990s?",
+    choices: [
+        "The Balkans",
+        "South America",
+        "East Asia",
+        "Western Europe"
+    ],
+    correctAnswer: 0,
+    explanation: "The Balkans experienced ethnic cleansing during the Yugoslav Wars in the 1990s, including atrocities in Bosnia and Kosovo."
+},
+{
+    question: "What was the primary goal of the Kyoto Protocol?",
+    choices: [
+        "To combat climate change by reducing greenhouse gas emissions",
+        "To establish a global free trade agreement",
+        "To resolve conflicts in the Middle East",
+        "To reduce global poverty"
+    ],
+    correctAnswer: 0,
+    explanation: "The Kyoto Protocol, adopted in 1997, aimed to reduce greenhouse gas emissions and combat global climate change."
+},
+{
+    question: "Which terrorist organization was responsible for the 9/11 attacks in 2001?",
+    choices: [
+        "ISIS",
+        "Al-Qaeda",
+        "Hamas",
+        "The Taliban"
+    ],
+    correctAnswer: 1,
+    explanation: "Al-Qaeda, led by Osama bin Laden, orchestrated the 9/11 terrorist attacks on the United States."
+},
+{
+    question: "What is the primary function of the International Monetary Fund (IMF)?",
+    choices: [
+        "To manage the global oil supply",
+        "To provide financial assistance to countries in economic crisis",
+        "To regulate international military alliances",
+        "To promote environmental sustainability"
+    ],
+    correctAnswer: 1,
+    explanation: "The IMF provides financial assistance and policy advice to countries facing economic instability to stabilize the global economy."
+},
+{
+    question: "Which African country experienced genocide in 1994?",
+    choices: [
+        "Sudan",
+        "Rwanda",
+        "South Africa",
+        "Nigeria"
+    ],
+    correctAnswer: 1,
+    explanation: "The Rwandan Genocide in 1994 resulted in the massacre of over 800,000 Tutsi and moderate Hutu individuals."
+},
+{
+    question: "What event triggered the Arab Spring in 2010?",
+    choices: [
+        "The invasion of Iraq",
+        "The self-immolation of a Tunisian street vendor",
+        "The fall of the Berlin Wall",
+        "The signing of the Paris Agreement"
+    ],
+    correctAnswer: 1,
+    explanation: "The Arab Spring began with the self-immolation of Mohamed Bouazizi in Tunisia, sparking protests against authoritarian governments across the Arab world."
+},
+{
+    question: "What was the purpose of the Paris Agreement signed in 2015?",
+    choices: [
+        "To combat global climate change",
+        "To end the Syrian Civil War",
+        "To establish a new economic alliance",
+        "To promote nuclear disarmament"
+    ],
+    correctAnswer: 0,
+    explanation: "The Paris Agreement aims to combat global climate change by reducing greenhouse gas emissions and limiting global warming."
+},
+{
+    question: "Which technology has been most influential in advancing globalization?",
+    choices: [
+        "The steam engine",
+        "The Internet",
+        "Nuclear energy",
+        "Television"
+    ],
+    correctAnswer: 1,
+    explanation: "The Internet revolutionized communication and commerce, becoming a key driver of globalization in the 21st century."
+},
+{
+    question: "What is the primary goal of the United Nations Sustainable Development Goals (SDGs)?",
+    choices: [
+        "To promote free trade globally",
+        "To achieve global peace and security",
+        "To address poverty, inequality, and environmental issues",
+        "To establish military alliances"
+    ],
+    correctAnswer: 2,
+    explanation: "The SDGs, adopted in 2015, aim to address global challenges such as poverty, inequality, and environmental sustainability."
+},
+{
+    question: "What sparked the Syrian Civil War in 2011?",
+    choices: [
+        "The rise of ISIS",
+        "Protests against Bashar al-Assad's government",
+        "A conflict over oil resources",
+        "Intervention by NATO forces"
+    ],
+    correctAnswer: 1,
+    explanation: "The Syrian Civil War began with protests against President Bashar al-Assad's authoritarian rule during the Arab Spring."
+},
+{
+    question: "Which of the following is an example of a multinational corporation?",
+    choices: [
+        "The United Nations",
+        "Google",
+        "NATO",
+        "The World Bank"
+    ],
+    correctAnswer: 1,
+    explanation: "Google is a multinational corporation with operations and influence across many countries, reflecting the globalized economy."
+},
+{
+    question: "What was the goal of the North American Free Trade Agreement (NAFTA)?",
+    choices: [
+        "To promote free trade between the U.S., Canada, and Mexico",
+        "To establish a military alliance",
+        "To create a unified currency",
+        "To regulate oil production"
+    ],
+    correctAnswer: 0,
+    explanation: "NAFTA aimed to reduce trade barriers and promote free trade between the United States, Canada, and Mexico."
+},
+{
+    question: "What is one effect of deforestation in the Amazon rainforest?",
+    choices: [
+        "Increased global biodiversity",
+        "Reduced greenhouse gas emissions",
+        "Loss of habitat for numerous species",
+        "Creation of sustainable energy sources"
+    ],
+    correctAnswer: 2,
+    explanation: "Deforestation in the Amazon leads to habitat loss for countless species, contributing to a decline in global biodiversity."
+},
+{
+    question: "What is the main cause of rising sea levels in the 21st century?",
+    choices: [
+        "Volcanic eruptions",
+        "Deforestation",
+        "Melting polar ice due to climate change",
+        "Earthquakes"
+    ],
+    correctAnswer: 2,
+    explanation: "Rising sea levels are caused by melting polar ice and glaciers due to global warming and climate change."
+},
+{
+    question: "What event led to the U.S. invasion of Iraq in 2003?",
+    choices: [
+        "The Arab Spring",
+        "The discovery of weapons of mass destruction (WMDs)",
+        "The September 11 terrorist attacks",
+        "The annexation of Kuwait"
+    ],
+    correctAnswer: 2,
+    explanation: "The U.S. invaded Iraq in 2003 citing the need to prevent the use of weapons of mass destruction and links to terrorism after 9/11."
+},
+{
+    question: "Which region has been most affected by desertification in recent decades?",
+    choices: [
+        "The Amazon Basin",
+        "The Arctic",
+        "Sub-Saharan Africa",
+        "Southeast Asia"
+    ],
+    correctAnswer: 2,
+    explanation: "Sub-Saharan Africa faces severe desertification due to deforestation, overgrazing, and climate change."
+},
+{
+    question: "Which international organization was formed to promote economic development in developing nations?",
+    choices: [
+        "The International Monetary Fund (IMF)",
+        "The World Bank",
+        "The United Nations",
+        "The European Union"
+    ],
+    correctAnswer: 1,
+    explanation: "The World Bank provides loans and grants to developing nations to support infrastructure, education, and economic development."
+},
+{
+    question: "What does the term 'Brexit' refer to?",
+    choices: [
+        "The UK's decision to leave the European Union",
+        "The creation of a new trade agreement in Europe",
+        "A global economic recession",
+        "The expansion of the European Union"
+    ],
+    correctAnswer: 0,
+    explanation: "Brexit refers to the United Kingdom's decision to leave the European Union, following a 2016 referendum."
+},
+{
+    question: "What is the main goal of the G20 summit?",
+    choices: [
+        "To address global economic challenges",
+        "To establish military alliances",
+        "To regulate global trade",
+        "To promote environmental sustainability"
+    ],
+    correctAnswer: 0,
+    explanation: "The G20 summit brings together the world's major economies to discuss global economic challenges and foster cooperation."
+}
+
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        const questionContainer = document.getElementById("question-container");
+        const feedbackContainer = document.getElementById("feedback");
+        const nextButton = document.getElementById("next-button");
+
+        function loadQuestion() {
+            const question = questions[currentQuestion];
+            questionContainer.innerHTML = `
+                <h2>${question.question}</h2>
+                ${question.choices.map((choice, index) => `
+                    <button class="choice-button" data-choice="${index}">${choice}</button>
+                `).join('')}
+            `;
+            feedbackContainer.innerHTML = "";
+            nextButton.style.display = "none";
+
+            const choiceButtons = document.querySelectorAll(".choice-button");
+            choiceButtons.forEach(button => {
+                button.addEventListener("click", (e) => {
+                    const userAnswer = parseInt(e.target.getAttribute("data-choice"));
+                    checkAnswer(userAnswer);
+                });
+            });
+        }
+
+        function checkAnswer(userAnswer) {
+            const question = questions[currentQuestion];
+            const isCorrect = userAnswer === question.correctAnswer;
+            feedbackContainer.innerHTML = `
+                <p>${isCorrect ? "Correct!" : "Incorrect."}</p>
+                <p>${isCorrect ? "" : `The correct answer is: ${question.choices[question.correctAnswer]}`}</p>
+                <p>${question.explanation}</p>
+            `;
+            if (isCorrect) score++;
+            nextButton.style.display = "block";
+
+            // Disable buttons after selecting an answer
+            const choiceButtons = document.querySelectorAll(".choice-button");
+            choiceButtons.forEach(button => button.disabled = true);
+        }
+
+        nextButton.addEventListener("click", () => {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                questionContainer.innerHTML = `
+                    <h2>Quiz Complete!</h2>
+                    <p>Your Score: ${score} / ${questions.length}</p>
+                `;
+                nextButton.style.display = "none";
+            }
+        });
+
+        // Load the first question on startup
+        loadQuestion();
+    </script>
+</body>
+</html>
